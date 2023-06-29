@@ -4,7 +4,7 @@ cd ../../eeglab %change for eeglab location
 eeglab
 close
 cd(path)
-savefolder="D:\3minSept22"; % repalce with output folder
+savefolder="D:\3minSept22"; % replace with output folder
 N=3;
 
 d=dir('*_3F.mat'); % selected files
