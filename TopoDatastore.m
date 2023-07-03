@@ -56,10 +56,12 @@ classdef TopoDatastore < matlab.io.Datastore & ...
                 %open eeglab
                 warning("Need EEGLAB! Trying to open...")
                 try
-                    cd ../eeglab/
+                    path = pwd;
+                    eeglabpath = uigetdir([],"Locate EEGLAB Directory");
+                    cd(eeglabpath)
                     eeglab
                     close
-                    cd ../Matlab/
+                    cd(path)
                 catch
                     error("Could not find EEGLAB. Open prior to use to add to path.")
                 end
@@ -108,6 +110,9 @@ classdef TopoDatastore < matlab.io.Datastore & ...
             % [data,info] = read(ds) read one mini-batch of data.
             
             miniBatchSize = ds.MiniBatchSize;
+            if ds.NumObservations < ds.MiniBatchSize
+                ds.MiniBatchSize = ds.NumObservations;
+            end
             
             
             i = 0;
