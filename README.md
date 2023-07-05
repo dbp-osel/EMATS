@@ -41,7 +41,7 @@ To use:
   - firfilt 2.7.1
     
 ### Sample Code
-For usability, the following sample code has been provided:
+For usability, the following sample code has been provided in the "Processed EEG" folder:
 
 **testEEG.mat**: a 3-minute EEG sample that has been preprocessed for use in our models.
 
