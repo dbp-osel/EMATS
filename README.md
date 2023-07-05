@@ -67,9 +67,9 @@ For usability, the following sample code has been provided:
   - out = PreDREEGplot(dreegstruc,out,N)
     - Calculates 3D tSNE calculations and settings for the output of DREEG
     - Out can be blank or a previous generated out structure
-    - N (default = 1000) is number of iterations of tSNE.
+    - N (default = 1000) is number of iterations of tSNE
   - names = PreDREEGd(F,p)
-    - Selects and plots the tSNE points in F (dreegstruc) at percentage p (default = 0.5) away from the center of mass. Names output denotes selected points.
+    - Selects and plots the tSNE points in F (dreegstruc) at percentage p (default = 0.5) away from the center of mass. Names output denotes selected points
   - PreDREEGexport2
     - Prepares and exports selected EEGs (saved as *_3F.mat in the workspace) from local TUEG database dump to usable EEG files. The files are all preprocessed (cleaned, segmented, filtered, reordered, resampled, etc.)
     - Estimated size: 88.7 GB
