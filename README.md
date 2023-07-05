@@ -1,5 +1,5 @@
 # RST-TBI
-Using the Temple University EEG Corpus (TUEG) [1], we trained a series of classifcation models that can classify a 3-minute electroencephalogram (EEG) as either "Normal", "Stroke", or "TBI" as described in Vivaldi, Caiola, et al. 2021 [2] and Caiola and Ye 2023 [3].
+Using the Temple University EEG Corpus (TUEG) [1,2], we trained a series of classifcation models that can classify a 3-minute electroencephalogram (EEG) as either "Normal", "Stroke", or "TBI" as described in Vivaldi, Caiola, et al. 2021 [3] and Caiola and Ye 2023 [4].
 
 ## Trained Models
 - Short-time Fourier Transform [STFT] (AUC = 0.85)
@@ -29,7 +29,7 @@ To use:
   - Deep Learning Toolbox 14.6
   - Statistics and Machine Learning Toolbox 12.5
   - Parallel Computing Toolbox 7.8
-- EEGLAB recommendations (needed for some training scripts and TMN) [5]
+- EEGLAB recommendations (needed for some training scripts and TMN) [5,6]
   - EEGLAB 2023.0
   - BIOsig 3.8.1
   - ICLabel 1.4
@@ -107,10 +107,12 @@ For usability, the following sample code has been provided
 ## References
 [1] Obeid, I., & Picone, J. (2016). The Temple University Hospital EEG Data Corpus. Frontiers in Neuroscience, Section Neural Technology, 10, 196.
 
-[2] N. Vivaldi, M. Caiola, K. Solarana and M. Ye, "Evaluating Performance of EEG Data-Driven Machine Learning for Traumatic Brain Injury Classification," in IEEE Transactions on Biomedical Engineering, vol. 68, no. 11, pp. 3205-3216, Nov. 2021, doi: 10.1109/TBME.2021.3062502.
+[2] https://isip.piconepress.com/projects/tuh_eeg/index.shtml
 
-[3] M. Caiola and M. Ye, "EEG Classification of Traumatic Brain Injury and Stroke from a Nonspecific Population using Neural Networks" in PLOS Digital Health (in press) 2023.
+[3] N. Vivaldi, M. Caiola, K. Solarana and M. Ye, "Evaluating Performance of EEG Data-Driven Machine Learning for Traumatic Brain Injury Classification," in IEEE Transactions on Biomedical Engineering, vol. 68, no. 11, pp. 3205-3216, Nov. 2021, doi: 10.1109/TBME.2021.3062502.
+
+[4] M. Caiola and M. Ye, "EEG Classification of Traumatic Brain Injury and Stroke from a Nonspecific Population using Neural Networks" in PLOS Digital Health (in press) 2023.
 
 [4] Delorme A & Makeig S (2004) EEGLAB: an open-source toolbox for analysis of single-trial EEG dynamics, Journal of Neuroscience Methods
 
-[5] https://sccn.ucsd.edu/eeglab/index.php
+[6] https://sccn.ucsd.edu/eeglab/index.php
