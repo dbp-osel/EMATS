@@ -1,5 +1,6 @@
 # EMATS: EEG based Machine or Deep Learning Algorithms for TBI & Stroke Classification
-Using the Temple University EEG Corpus (TUEG) [1,2], we trained a series of classifcation models that can classify a 3-minute electroencephalogram (EEG) as either "Normal", "Stroke", or "TBI" as described in Vivaldi, Caiola, et al. 2021 [3] and Caiola and Ye 2023 [4].
+Using the [Temple University EEG Corpus](https://isip.piconepress.com/projects/tuh_eeg/index.shtml) (TUEG) [1], we trained a series of classifcation models that can classify a 3-minute electroencephalogram (EEG) as either "Normal", "Stroke", or "TBI" as described in Vivaldi, Caiola, et al. 2021 [2] and Caiola and Ye 2023 [3].
+> Michael Caiola (Michael.Caiola@fda.hhs.gov) and Meijun Ye (Meijun.Ye@fda.hhs.gov)
 
 ## Trained Models
 - Short-time Fourier Transform [STFT] (AUC = 0.85)
@@ -29,7 +30,7 @@ To use:
   - Deep Learning Toolbox 14.6
   - Statistics and Machine Learning Toolbox 12.5
   - Parallel Computing Toolbox 7.8
-- EEGLAB recommendations (needed for some training scripts and TMN) [5,6]
+- [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php) recommendations (needed for some training scripts and TMN) [4]
   - EEGLAB 2023.0
   - BIOsig 3.8.1
   - ICLabel 1.4
@@ -39,7 +40,7 @@ To use:
     
 ### Sample Code
 For usability, the following sample code has been provided
-- testEEG.mat: a 3-minute EEG sample that has been preprocessed for use in our models
+- testEEG.mat: a 3-minute EEG sample that has been preprocessed for use in our models. **Can be used directly in the Predict section of Run.mlx**
 
 
 ## Additional Code
@@ -89,10 +90,32 @@ For usability, the following sample code has been provided
       - 143 Subject and Session #s
   - PreData2020122213119.xlsx
     - Exported demographic spreadsheet of all TUEG EEG Sessions from v.1.1.0 and v.1.2.0. Output from PreGetData.m
+  - PreLopezData.mat
+    - EEGLAB (only necessary if using TMN)
+  - Pretextnet.mat
+  - PredictionDatabase.mat
+  - CohortFiles
 
 
   ### Training code:
-  - TrainXX
+  - MatchSubjects
+  - TrainFeatures
+  - TrainTopo
+  - TrainFusion
+  - TrainSTFT
+  - Sep22.mat
+  - ReleifF_SVM.mat
+  - LDA_SVM.mat
+  - F_DL.mat
+  - Chlocs2.mat
+  - Topo_BasicNet.mat
+  - TopoData2.mat
+  - SFnet.mat
+  - AllFeatures.mat
+  - ReliefFScore.mat
+  - MdlResults
+  - TopoDatastore
+  - ResampleDatastore
   ### Onnx Files:
   The four deep learning networks have been exported to ONNX file format for use outside of MATLAB. These networks have not been tested outside of MATLAB and may be missing MATLAB specific or custom layers. The following four networks can be found in the Exported Networks folder
   - FeatureNet.onnx
@@ -107,12 +130,9 @@ This software and documentation (the "Software") were developed at the Food and 
 ## References
 [1] Obeid, I., & Picone, J. (2016). The Temple University Hospital EEG Data Corpus. Frontiers in Neuroscience, Section Neural Technology, 10, 196.
 
-[2] https://isip.piconepress.com/projects/tuh_eeg/index.shtml
+[2] N. Vivaldi, M. Caiola, K. Solarana and M. Ye, "Evaluating Performance of EEG Data-Driven Machine Learning for Traumatic Brain Injury Classification," in IEEE Transactions on Biomedical Engineering, vol. 68, no. 11, pp. 3205-3216, Nov. 2021, doi: 10.1109/TBME.2021.3062502.
 
-[3] N. Vivaldi, M. Caiola, K. Solarana and M. Ye, "Evaluating Performance of EEG Data-Driven Machine Learning for Traumatic Brain Injury Classification," in IEEE Transactions on Biomedical Engineering, vol. 68, no. 11, pp. 3205-3216, Nov. 2021, doi: 10.1109/TBME.2021.3062502.
-
-[4] M. Caiola and M. Ye, "EEG Classification of Traumatic Brain Injury and Stroke from a Nonspecific Population using Neural Networks" in PLOS Digital Health (in press) 2023.
+[3] M. Caiola and M. Ye, "EEG Classification of Traumatic Brain Injury and Stroke from a Nonspecific Population using Neural Networks" in PLOS Digital Health (in press) 2023.
 
 [4] Delorme A & Makeig S (2004) EEGLAB: an open-source toolbox for analysis of single-trial EEG dynamics, Journal of Neuroscience Methods
 
-[6] https://sccn.ucsd.edu/eeglab/index.php
