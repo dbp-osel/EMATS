@@ -14,11 +14,13 @@ Using the [Temple University EEG Corpus](https://isip.piconepress.com/projects/t
 Easily classify a 3-minute EEG as Normal/Stroke/TBI with the use of the RUN.mlx live script.
 The script consists of two parts:
   1) Preprocessing code. Transform an .edf file containing 4+ minutes of EEG on a standard 10-20 system with 19+ contacts into cleaned 3-minute EEG segments. (Note: The first minute is disgarded). This code saves the preprocessed files as .m files, making this step only necessary once.
-  2) Model Prediction. Select one of 5 trained models (see above) to classify a preprocessed EEG as Normal/Stroke/TBI. Note: the SVM models require a calculation of features before classification.
+  2) Model Prediction. Select one of 6 trained models (see above) to classify a preprocessed EEG as Normal/Stroke/TBI. Note: the SVM models require a calculation of features before classification.
+
+*WARNING: EEG classification is set using default thresholding and should be further optimized for sensitivity/specificity/accuracy on additonal training data prior to use.*
 
 To use:
 - Download/clone this repo.
-- Open RUN.mlx
+- Open **RUN.mlx**
 - Follow instructions to preprocess the selected .edf file
 - Select the model from the dropdown list
 
@@ -65,9 +67,9 @@ For usability, the following sample code has been provided:
   - out = PreDREEGplot(dreegstruc,out,N)
     - Calculates 3D tSNE calculations and settings for the output of DREEG
     - Out can be blank or a previous generated out structure
-    - N (default = 1000) is number of iterations of tSNE.
+    - N (default = 1000) is number of iterations of tSNE
   - names = PreDREEGd(F,p)
-    - Selects and plots the tSNE points in F (dreegstruc) at percentage p (default = 0.5) away from the center of mass. Names output denotes selected points.
+    - Selects and plots the tSNE points in F (dreegstruc) at percentage p (default = 0.5) away from the center of mass. Names output denotes selected points
   - PreDREEGexport2
     - Prepares and exports selected EEGs (saved as *_3F.mat in the workspace) from local TUEG database dump to usable EEG files. The files are all preprocessed (cleaned, segmented, filtered, reordered, resampled, etc.)
     - Estimated size: 88.7 GB
