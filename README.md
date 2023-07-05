@@ -91,32 +91,78 @@ For usability, the following sample code has been provided
   - PreData2020122213119.xlsx
     - Exported demographic spreadsheet of all TUEG EEG Sessions from v.1.1.0 and v.1.2.0. Output from PreGetData.m
   - PreLopezData.mat
-    - EEGLAB (only necessary if using TMN)
+    - 2993 selected files and if they were identified as “Abnormal” or “Normal” [5]
   - Pretextnet.mat
+    - net: SeriesNetwork
+      - Trained net used on the BERT embeddings
   - PredictionDatabase.mat
-  - CohortFiles
+    - T: table
+      - 19449 EEG Sessions and selected demographic fields extracted from the TUEG included .txt file. These have been predicted by net as either “Normal”, “TBI”, “Stroke”, or “Unknown”.
+      - Fields include:
+        - FileID
+        - File Location
+        - Subject #
+        - Session #
+        - Flag for TBI keywords: Empty if not TBI keywords, else the keywords are included here
+        - Age
+        - Sex
+        - mTBIEvidence: Localized txt data for the TBI flag. Empty if flag is empty
+        - Method: Extracted Method section of the .txt file.
+        - Medication text: Extracted Medication section of the .txt file
+        - Full Note: The entire extracted .txt data
+        - Montage of EEG
+        - Date of recording
+        - EEG Type
+        - EEG Subtype
+        - LTM/Routine
+        - Filenames
+        - Category: Predicted categories from net
+        - Score: Prediction score from net
+    - net: SeriesNetwork
+      - Trained net used on the BERT embeddings. This is imported from textnet.mat unless retrained in the script
+    - PredictedFiles: CohortFiles
+      - The table T, converted to a CohortFiles class. This allows some visualization functions such as wordclouds
+  - CohortFiles: Class
+    - A selection of files and functions to better use files associated with cohorts and to read the medical txt files associated with TUEG.
 
 
-  ### Training code:
+  ### Training code
   - MatchSubjects
+    - Function to match normal and stroke subjects to the TBI cohort using gender and age. 
   - TrainFeatures
+    - Live script used to train networks with feature data.
   - TrainTopo
+    - Live script used to train topographic map network
   - TrainFusion
+    - Live script used to train sensor fusion network
   - TrainSTFT
+    - Live script used to train the Short time fourier transform network
   - Sep22.mat
-  - ReleifF_SVM.mat
+    - Generated list of file locations and categories. This can be extracted from the output structure given in PreDREEGexport2
+  - ReliefF_SVM.mat
+    - Trained SVM on top 100 features identified by ReliefF
   - LDA_SVM.mat
+    - Trained SVM using LDA feature selection
   - F_DL.mat
-  - Chlocs2.mat
+    - Collection of deep learning networks trained on 100 ReliefF features
+  - chlocs2.mat
+    - EEG channel locations
   - Topo_BasicNet.mat
-  - TopoData2.mat
+    - Trained TMN 
   - SFnet.mat
+    - Trained sensor fusion network
   - AllFeatures.mat
+    - Calculated features and LDA thresholds
   - ReliefFScore.mat
-  - MdlResults
-  - TopoDatastore
-  - ResampleDatastore
-  ### Onnx Files:
+    - Ranked Features using ReliefF
+  - MdlResults: class
+    - Shared functions for ML/DL models
+  - TopoDatastore: class
+    - Custom datastore to read in data from file structure for TMN
+  - ResampleDatastore: class
+    - Custom datastore to read in data from file structure for other DL nets
+  
+  ### Onnx Files
   The four deep learning networks have been exported to ONNX file format for use outside of MATLAB. These networks have not been tested outside of MATLAB and may be missing MATLAB specific or custom layers. The following four networks can be found in the Exported Networks folder
   - FeatureNet.onnx
   - Fusion Net.onnx
@@ -136,3 +182,4 @@ This software and documentation (the "Software") were developed at the Food and 
 
 [4] Delorme A & Makeig S (2004) EEGLAB: an open-source toolbox for analysis of single-trial EEG dynamics, Journal of Neuroscience Methods
 
+[5] Lopez, S. (2017). Automated Identification of Abnormal EEGs. Temple University.
