@@ -18,7 +18,7 @@ The script consists of two parts:
 
 To use:
 - Download/clone this repo.
-- Open RUN.mlx
+- Open **RUN.mlx**
 - Follow instructions to preprocess the selected .edf file
 - Select the model from the dropdown list
 
