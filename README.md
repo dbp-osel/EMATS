@@ -39,8 +39,11 @@ To use:
   - firfilt 2.7.1
     
 ### Sample Code
-For usability, the following sample code has been provided
-- testEEG.mat: a 3-minute EEG sample that has been preprocessed for use in our models. **Can be used directly in the Predict section of Run.mlx**
+For usability, the following sample code has been provided:
+
+**testEEG.mat**: a 3-minute EEG sample that has been preprocessed for use in our models.
+
+*This can be used directly in the Predict section of Run.mlx*
 
 
 ## Additional Code
