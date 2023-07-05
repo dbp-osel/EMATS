@@ -1,7 +1,7 @@
-classdef TopoDatastore < matlab.io.Datastore & ...
+classdef ResampleDatastore < matlab.io.Datastore & ...
         matlab.io.datastore.MiniBatchable & ...
         matlab.io.datastore.Shuffleable
-    %TOPODATASTORE Custom datastore to read in data from file structure for TMN
+    %RESAMPLEDATABASE Custom datastore to read in data from file structure for other DL nets
     %   To be used as a datastore to a local directory of TUEG files.
     %
     %   Authors:
@@ -28,6 +28,7 @@ classdef TopoDatastore < matlab.io.Datastore & ...
     %   redistributed and/or modified freely, we ask that any derivative
     %   works bear some notice that they are derived from it, and any
     %   modified versions bear some notice that they have been modified.
+
     properties
         Datastore
         Labels
@@ -37,10 +38,7 @@ classdef TopoDatastore < matlab.io.Datastore & ...
         Augmented
         TestSet
         newHz
-
-        fband=[1 4; 4 8; 8 12; 12 16; 16 20; 25 40];
-
-        chLocations
+        %CurrentFileIndex
     end
     
     properties(SetAccess = protected)
@@ -53,18 +51,13 @@ classdef TopoDatastore < matlab.io.Datastore & ...
     end
     
     methods
-        function ds = TopoDatastore(folder,newHz,chLocations,varargin)
-            % ds = NewDatastore(folder,newHz) creates a custom datastore
-            % from the data in folder with new sampling sampling rate newHz
+        function ds = ResampleDatastore(folder,newHz,varargin)
+            % ds = ResampleDatastore(folder,newHz) creates a custom datastore
+            % from the data in folder with a new sampling rate newHz.
             %
-            % chLocations are needed for topoplot, use chlocs2.mat
-            % 
             % Optional arguments:
-            %   "DataAugmentation" (default = false)
-            %       Augments the data in random shuffles of 90 seconds
-            %   "TestSet (default = false)
-            %       Creates a testset of 90 second data, to be used when
-            %       DataAugmentation is being used
+            %   "Augmented" (default = false)
+            %   "Test
             
             if isempty(newHz)
                 ds.newHz = 250;
@@ -86,29 +79,10 @@ classdef TopoDatastore < matlab.io.Datastore & ...
             else
                 ds.TestSet = false;
             end
-
-            if exist("topoplot",'file')~=2
-                %open eeglab
-                warning("Need EEGLAB! Trying to open...")
-                try
-                    path = pwd;
-                    eeglabpath = uigetdir([],"Locate EEGLAB Directory");
-                    cd(eeglabpath)
-                    eeglab
-                    close
-                    cd(path)
-                catch
-                    error("Could not find EEGLAB. Open prior to use to add to path.")
-                end
-            end
-
-            % Save chLocations
-            ds.chLocations = chLocations;
-
+            
             % Create file datastore.
             fds = fileDatastore(folder, ...
-                'ReadFcn',@(x) readSequence(x,ds.newHz,ds.Augmented,ds.TestSet,...
-                ds.fband,ds.chLocations), ...
+                'ReadFcn',@(x) readSequence(x,ds.newHz,ds.Augmented,ds.TestSet), ...
                 'IncludeSubfolders',true);
             ds.Datastore = fds;
             
@@ -145,22 +119,23 @@ classdef TopoDatastore < matlab.io.Datastore & ...
             % [data,info] = read(ds) read one mini-batch of data.
             
             miniBatchSize = ds.MiniBatchSize;
-            if ds.NumObservations < ds.MiniBatchSize
-                ds.MiniBatchSize = ds.NumObservations;
-            end
             
-            
-            i = 0;
-            while i < miniBatchSize && hasdata(ds) %hasdata(ds.Datastore)
-                i = i + 1;
-                Predictors{i,1} = read(ds.Datastore);
-                %temppred = read(ds.Datastore);
-                %predictors{i,1} = spect(temppred);
-                Response(i,1) = ds.Labels(ds.CurrentFileIndex);
+            for i = 1:miniBatchSize
+                predictors{i,1} = read(ds.Datastore);
+                responses(i,1) = ds.Labels(ds.CurrentFileIndex);
                 ds.CurrentFileIndex = ds.CurrentFileIndex + 1;
+
             end
             
-            data = preprocessData(Predictors,Response);
+%             i = 0;
+%             while i < miniBatchSize && hasdata(ds)
+%                 i = i + 1;
+%                 predictors{i,1} = read(ds.Datastore);
+%                 responses(i,1) = ds.Labels(ds.CurrentFileIndex);
+%                 ds.CurrentFileIndex = ds.CurrentFileIndex + 1;
+%             end
+            
+            data = preprocessData(predictors,responses);
             info.Size = size(data);
         end
         
@@ -290,11 +265,20 @@ end
 data = table(Predictors,Response);
 end
 
-function data = readSequence(filename,newHz,aug,ts,fband,chlocs)
+function data = readSequence(filename,newHz,aug,ts)
             % data = readSequence(filename) reads the sequence y from the MAT file
             % filename
             oldHz = 250;
-            S = load(filename);
+            try
+                S = load(filename);
+            catch
+                if startsWith(filename,"D","IgnoreCase",true)
+                    filename = replace(filename,'D:','C:');
+                else
+                    filename = replace(filename,'C:','D:');
+                end
+                S = load(filename);
+            end
             if newHz == oldHz
                 data = S.y;
             else
@@ -309,23 +293,16 @@ function data = readSequence(filename,newHz,aug,ts,fband,chlocs)
             if ts
                 data = data(:,1:1+(downsample*newHz-1));
             end
+        end
 
-            %Topo
-            data = data';
-            tot=bandpower(data,newHz,[1 newHz/2]);
-            n = size(fband,1);
-            abs_psd = zeros(size(data,2),n);
-            for i=1:n
-                abs_psd(:,i)=bandpower(data,newHz,fband(i,:));
-            end
-            rel_psd = abs_psd./tot';
-            gscale = 67*2; %interpoltation value
-            y = zeros(gscale,gscale,n);
-            for i = 1:n
-                [~,y(:,:,i)]= topoplot(rel_psd(:,i),chlocs,'noplot','on','gridscale',gscale);
-            end
-            data = y;
-            data = fillmissing(data,'constant',0);
+
+function p=spect(x)
+p=zeros(1024,521,19);
+    for i=1:19
+        %[p(:,:,i),~,~]=wvd(x(i,:),250,'smoothedPseudo','NumTimePoints',22502);
+        [p(:,:,i),~,~]=pspectrum(x(i,:),250,'spectrogram','FrequencyLimits',[0 50]);
+    end
+    p=log(p);
 end
 
 function TF = augmentationValidator(valIn)

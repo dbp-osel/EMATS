@@ -1,7 +1,34 @@
 classdef ResampleDatastore < matlab.io.Datastore & ...
         matlab.io.datastore.MiniBatchable & ...
         matlab.io.datastore.Shuffleable
-    
+    %RESAMPLEDATABASE Custom datastore to read in data from file structure for other DL nets
+    %   To be used as a datastore to a local directory of TUEG files.
+    %
+    %   Authors:
+    %       Michael Caiola (Michael.Caiola@fda.hhs.gov)
+    %       Meijun Ye (Meijun.Ye@fda.hhs.gov)
+    %
+    %   Disclaimer: This software and documentation (the "Software") were 
+    %   developed at the Food and Drug Administration (FDA) by employees of
+    %   the Federal Government in the course of their official duties.
+    %   Pursuant to Title 17, Section 105 of the United States Code,
+    %   this work is not subject to copyright protection and is in the
+    %   public domain. Permission is hereby granted, free of charge, to any
+    %   person obtaining a copy of the Software, to deal in the Software
+    %   without restriction, including without limitation the rights to
+    %   use, copy, modify, merge, publish, distribute, sublicense, or sell
+    %   copies of the Software or derivatives, and to permit persons to
+    %   whom the Software is furnished to do so. FDA assumes no
+    %   responsibility whatsoever for use by other parties of the Software,
+    %   its source code, documentation or compiled executables, and makes
+    %   no guarantees, expressed or implied, about its quality,
+    %   reliability, or any other characteristic. Further, use of this code
+    %   in no way implies endorsement by the FDA or confers any advantage
+    %   in regulatory decisions. Although this software can be
+    %   redistributed and/or modified freely, we ask that any derivative
+    %   works bear some notice that they are derived from it, and any
+    %   modified versions bear some notice that they have been modified.
+
     properties
         Datastore
         Labels
@@ -11,7 +38,7 @@ classdef ResampleDatastore < matlab.io.Datastore & ...
         Augmented
         TestSet
         newHz
-        %CurrentFileIndex
+
     end
     
     properties(SetAccess = protected)
@@ -25,8 +52,15 @@ classdef ResampleDatastore < matlab.io.Datastore & ...
     
     methods
         function ds = ResampleDatastore(folder,newHz,varargin)
-            % ds = NewDatastore(folder) creates a custom datastore
-            % from the data in folder.
+            % ds = ResampleDatastore(folder,newHz) creates a custom datastore
+            % from the data in folder with a new sampling rate newHz.
+            %
+            % Optional arguments:
+            %   "DataAugmentation" (default = false)
+            %       Augments the data in random shuffles of 90 seconds
+            %   "TestSet (default = false)
+            %       Creates a testset of 90 second data, to be used when
+            %       DataAugmentation is being used
             
             if isempty(newHz)
                 ds.newHz = 250;
@@ -95,14 +129,6 @@ classdef ResampleDatastore < matlab.io.Datastore & ...
                 ds.CurrentFileIndex = ds.CurrentFileIndex + 1;
 
             end
-            
-%             i = 0;
-%             while i < miniBatchSize && hasdata(ds)
-%                 i = i + 1;
-%                 predictors{i,1} = read(ds.Datastore);
-%                 responses(i,1) = ds.Labels(ds.CurrentFileIndex);
-%                 ds.CurrentFileIndex = ds.CurrentFileIndex + 1;
-%             end
             
             data = preprocessData(predictors,responses);
             info.Size = size(data);

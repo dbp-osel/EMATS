@@ -1,5 +1,35 @@
-%GetData Extract data from tuh database as a function
 function T=PreGetData(databases,savefile)
+%PREGETDATA Extract data from TUEG database as a function
+%
+% Support function. Only needed if PreData2020122213119.xlsx is needed to be rerun.
+% Creates an excel spreadsheet from a local copy to the TUEG database v.1.1.0 and v.1.2.0
+% Output: PreData2020122213119.xlsx
+%
+%   Authors:
+%       Michael Caiola (Michael.Caiola@fda.hhs.gov)
+%       Meijun Ye (Meijun.Ye@fda.hhs.gov)
+%
+%   Disclaimer: This software and documentation (the "Software") were 
+%   developed at the Food and Drug Administration (FDA) by employees of
+%   the Federal Government in the course of their official duties.
+%   Pursuant to Title 17, Section 105 of the United States Code,
+%   this work is not subject to copyright protection and is in the
+%   public domain. Permission is hereby granted, free of charge, to any
+%   person obtaining a copy of the Software, to deal in the Software
+%   without restriction, including without limitation the rights to
+%   use, copy, modify, merge, publish, distribute, sublicense, or sell
+%   copies of the Software or derivatives, and to permit persons to
+%   whom the Software is furnished to do so. FDA assumes no
+%   responsibility whatsoever for use by other parties of the Software,
+%   its source code, documentation or compiled executables, and makes
+%   no guarantees, expressed or implied, about its quality,
+%   reliability, or any other characteristic. Further, use of this code
+%   in no way implies endorsement by the FDA or confers any advantage
+%   in regulatory decisions. Although this software can be
+%   redistributed and/or modified freely, we ask that any derivative
+%   works bear some notice that they are derived from it, and any
+%   modified versions bear some notice that they have been modified.
+
 wid='MATLAB:table:ModifiedAndSavedVarnames';
 warning('off',wid);
 
@@ -32,8 +62,12 @@ varNames={'Location','Subject','Session','Flag','Age','Sex','mTBI Evidence','Met
 
 T=table('Size',[0 15],'VariableTypes',varTypes,'VariableNames',varNames);
 
-
+try
 progressbar('Folders','Montages','Subjects','Session')
+catch
+warning("Progressbar not found and will not be displayed. To display progressbar go to: https://www.mathworks.com/matlabcentral/fileexchange/6922-progressbar?s_tid=srchtitle")
+end
+
 
 %Cycle through directory
 dnum=1;
@@ -92,20 +126,35 @@ for database=databases
                     end
                     newT={location,subject,session,flag,age,sex,evidence,method,medication,notes,mont,date,ad1,ad2,ad3};
                     T=[T;newT];
+                    try
                     progressbar([],[],[],(k-2)/(length(d2)-2));
+                    catch
+                    end
                 end
+                try
                 progressbar([],[],((j-2)+(i-3)*100)/((length(d)-2)*100),[])
+                catch
+                end
             end
         end
+        try
         progressbar([],(ii-2)/(length(d0)-2),[],[])
+        catch
+        end
     end
+    try
     progressbar(dnum/length(databases),0,[],[])
+    catch
+    end
     dnum=dnum+1;
     
     
     
 end
+try
 progressbar(1);
+catch
+end
     varTypes={'categorical','categorical','categorical'};
     varNames={'EEG Type','EEG Subtype','LTM/Routine'};
     %T1=table('Size',[0 3],'VariableTypes',varTypes,'VariableNames',varNames);
