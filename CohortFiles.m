@@ -3,6 +3,8 @@ classdef CohortFiles
     %   List of functions to better use cohort files and read medical
     %   records
     %
+    %   Some functions require the Text Analytics Toolbox
+    %
     %   Authors:
     %       Michael Caiola (Michael.Caiola@fda.hhs.gov)
     %       Meijun Ye (Meijun.Ye@fda.hhs.gov)
