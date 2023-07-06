@@ -13,10 +13,10 @@ Using the [Temple University EEG Corpus](https://isip.piconepress.com/projects/t
 ## Instructions For Use
 Easily classify a 3-minute EEG as Normal/Stroke/TBI with the use of the RUN.mlx live script.
 The script consists of two parts:
-  1) Preprocessing code. Transform an .edf file containing 4+ minutes of EEG on a standard 10-20 system with 19+ contacts into cleaned 3-minute EEG segments. (Note: The first minute is disgarded). This code saves the preprocessed files as .m files, making this step only necessary once.
+  1) Preprocessing code. Transform an .edf file containing 4+ minutes of EEG on a standard 10-20 system with 19+ contacts into cleaned 3-minute EEG segments. (Note: The first minute is discarded). This code saves the preprocessed files as .m files, making this step only necessary once.
   2) Model Prediction. Select one of 6 trained models (see above) to classify a preprocessed EEG as Normal/Stroke/TBI. Note: the SVM models require a calculation of features before classification.
 
-*WARNING: EEG classification is set using default thresholding and should be further optimized for sensitivity/specificity/accuracy on additonal training data prior to use.*
+*WARNING: EEG classification is set using default thresholding and should be further optimized for sensitivity/specificity/accuracy on additional training data prior to use.*
 
 To use:
 - Download/clone this repo.
@@ -27,7 +27,7 @@ To use:
 ### Prerequisites
 - MATLAB recommendations
   - MATLAB 9.14
-  - Optimizaton Toolbox 9.5
+  - Optimization Toolbox 9.5
   - Signal Processing Toolbox 9.2
   - Deep Learning Toolbox 14.6
   - Statistics and Machine Learning Toolbox 12.5
