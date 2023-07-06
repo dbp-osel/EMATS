@@ -20,6 +20,7 @@ The script consists of two parts:
 
 To use:
 - Download/clone this repo.
+- Select the repo as the current MATLAB Folder
 - Open **RUN.mlx**
 - Follow instructions to preprocess the selected .edf file
 - Select the model from the dropdown list
