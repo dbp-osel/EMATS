@@ -32,7 +32,7 @@ To use:
   - Deep Learning Toolbox 14.6
   - Statistics and Machine Learning Toolbox 12.5
   - Parallel Computing Toolbox 7.8
-- [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php) recommendations (needed for some training scripts and TMN) [4]
+- [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php) recommendations (used for training scripts, feature calculation, and TMN) [4]
   - EEGLAB 2023.0
   - BIOsig 3.8.1
   - ICLabel 1.4
@@ -41,7 +41,7 @@ To use:
   - firfilt 2.7.1
     
 ### Sample Code
-For usability, the following sample code has been provided:
+For usability, the following sample code has been provided in the "Processed EEG" folder:
 
 **testEEG.mat**: a 3-minute EEG sample that has been preprocessed for use in our models.
 
