@@ -39,7 +39,7 @@ To use:
   - Deep Learning Toolbox 14.6
   - Statistics and Machine Learning Toolbox 12.5
   - Parallel Computing Toolbox 7.8
-- [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php) recommendations (used for training scripts, feature calculation, and TMN) [4]
+- [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php) recommendations (used for training scripts, feature calculation, preprocessing, and TMN) [4]
   - EEGLAB 2023.0
   - BIOsig 3.8.1
   - ICLabel 1.4
