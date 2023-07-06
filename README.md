@@ -18,12 +18,18 @@ The script consists of two parts:
 
 *WARNING: EEG classification is set using default thresholding and should be further optimized for sensitivity/specificity/accuracy on additional training data prior to use.*
 
+<details>
+  <summary>EEG Channels Required</summary>
+  The following EEG channels are needed (see chlocs2.mat for more info): "FP1",    "FP2",    "F3",    "F4",    "C3",    "C4",    "P3",    "P4",    "O1",    "O2",    "F7",    "F8",    "T3/T7",    "T4/T8",    "T5/P7",    "T6/P8",   "Fz",    "Cz",    "Pz"
+
+</details>
+
 To use:
-- Download/clone this repo.
-- Select the repo as the current MATLAB Folder
-- Open **RUN.mlx**
-- Follow instructions to preprocess the selected .edf file
-- Select the model from the dropdown list
+1. Download/clone this repo.
+2.  Select the repo as the current MATLAB Folder
+3.  Open **RUN.mlx**
+4.  Follow instructions to preprocess the selected .edf file
+5.  Select the model from the dropdown list to classify the preprocessed file
 
 ### Prerequisites
 - MATLAB recommendations
@@ -49,7 +55,7 @@ For usability, the following sample code has been provided in the "Processed EEG
 *This can be used directly in the Predict section of Run.mlx*
 
 
-## Additional Code
+## Advanced Code
   For reproducibility and additonal training, code has been provided for both preprocessing of TUEG EEG and model training.
   ### Preprocessing code:
   - PreGetData: Support function. Only needed if PreData2020122213119.xlsx is needed to be rerun.
