@@ -191,7 +191,7 @@ This software reflects the views of the authors and should not be construed to r
 
 [2] N. Vivaldi, M. Caiola, K. Solarana and M. Ye, "Evaluating Performance of EEG Data-Driven Machine Learning for Traumatic Brain Injury Classification," in IEEE Transactions on Biomedical Engineering, vol. 68, no. 11, pp. 3205-3216, Nov. 2021, doi: 10.1109/TBME.2021.3062502.
 
-[3] M. Caiola and M. Ye, "EEG Classification of Traumatic Brain Injury and Stroke from a Nonspecific Population using Neural Networks" in PLOS Digital Health (in press) 2023.
+[3] Caiola M, Babu A, Ye M (2023) EEG classification of traumatic brain injury and stroke from a nonspecific population using neural networks. PLOS Digital Health 2(7): e0000282. https://doi.org/10.1371/journal.pdig.0000282
 
 [4] Delorme A & Makeig S (2004) EEGLAB: an open-source toolbox for analysis of single-trial EEG dynamics, Journal of Neuroscience Methods
 
