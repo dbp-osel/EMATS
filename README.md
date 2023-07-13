@@ -13,7 +13,7 @@ Using the [Temple University EEG Corpus](https://isip.piconepress.com/projects/t
 ## Instructions For Use
 Easily classify a 3-minute EEG as Normal/Stroke/TBI with the use of the RUN.mlx live script.
 
-**Disclaimer: The software is not intended to make clinical diagnoses or to be used in any way to diagnose or treat subjects for whom the EEG is taken.**
+**Disclaimer: This code is not intended to make clinical diagnoses or to be used in any way to diagnose or treat subjects for whom the EEG is taken.**
 
 The script consists of two parts:
   1) Preprocessing code. Transform an .edf file containing 4+ minutes of EEG on a standard 10-20 system with 19+ contacts into cleaned 3-minute EEG segments. (Note: The first minute is discarded). This code saves the preprocessed files as .m files, making this step only necessary once.
