@@ -30,6 +30,9 @@ function out=PreDREEG(T,n,all_data)
 %   redistributed and/or modified freely, we ask that any derivative
 %   works bear some notice that they are derived from it, and any
 %   modified versions bear some notice that they have been modified.
+%   The Software is not intended to make clinical diagnoses or to be
+%   used in any way to diagnose or treat subjects for whom the EEG is
+%   taken.
 
 if nargin < 3
     all_data = 0;
