@@ -1,5 +1,5 @@
 # EMATS: EEG based Machine or Deep Learning Algorithms for TBI & Stroke Classification
-Using the [Temple University EEG Corpus](https://isip.piconepress.com/projects/tuh_eeg/index.shtml) (TUEG) [1], we trained a series of classifcation models that can classify a 3-minute electroencephalogram (EEG) as either "Normal", "Stroke", or "TBI" as described in Vivaldi, Caiola, et al. 2021 [2] and Caiola and Ye 2023 [3].
+Using the [Temple University EEG Corpus](https://isip.piconepress.com/projects/tuh_eeg/index.shtml) (TUEG) [1], we trained a series of classification models that can classify a 3-minute electroencephalogram (EEG) as either "Normal", "Stroke", or "TBI" as described in Vivaldi, Caiola, et al. 2021 [2] and Caiola and Ye 2023 [3].
 > Michael Caiola (Michael.Caiola@fda.hhs.gov) and Meijun Ye (Meijun.Ye@fda.hhs.gov)
 
 ## Trained Models
@@ -59,7 +59,7 @@ For testing, the following sample code has been provided in the "Processed EEG" 
 
 
 ## Advanced Code
-  For reproducibility and additonal training, code has been provided for both preprocessing of TUEG EEG and model training.
+  For reproducibility and additional training, code has been provided for both preprocessing of TUEG EEG and model training.
   ### Preprocessing code:
   - PreGetData: Support function. Only needed if PreData2020122213119.xlsx is needed to be rerun.
     - Creates an excel spreadsheet from a local copy to the TUEG database v.1.1.0 and v.1.2.0
@@ -151,7 +151,7 @@ For testing, the following sample code has been provided in the "Processed EEG" 
   - TrainFusion
     - Live script used to train sensor fusion network
   - TrainSTFT
-    - Live script used to train the Short time fourier transform network
+    - Live script used to train the Short Time Fourier Transform network
   - Sep22.mat
     - Generated list of file locations and categories. This can be extracted from the output structure given in PreDREEGexport2
   - ReliefF_SVM.mat
