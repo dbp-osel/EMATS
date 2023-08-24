@@ -11,13 +11,13 @@ Using the [Temple University EEG Corpus](https://isip.piconepress.com/projects/t
 - Support Vector Machine with ReliefF selected features [ReliefF_SVM] (AUC = 0.85)
 
 ## Instructions For Use
-Easily classify a 3-minute EEG as Normal/Stroke/TBI with the use of the RUN.mlx live script.
+Prediction of a 3-minute EEG as Normal/Stroke/TBI with the use of the RUN.mlx live script.
 
 **Disclaimer: This code is not intended to make clinical diagnoses or to be used in any way to diagnose or treat subjects for whom the EEG is taken.**
 
 The script consists of two parts:
   1) Preprocessing code. Transform an .edf file containing 4+ minutes of EEG on a standard 10-20 system with 19+ contacts into cleaned 3-minute EEG segments. (Note: The first minute is discarded). This code saves the preprocessed files as .m files, making this step only necessary once.
-  2) Model Prediction. Select one of 6 trained models (see above) to classify a preprocessed EEG as Normal/Stroke/TBI. Note: the SVM models require a calculation of features before classification.
+  2) Model Prediction. Select one of 6 trained models (see above) to classify a preprocessed EEG as Normal/Stroke/TBI. Note: the SVM models require an automatic calculation of features before classification.
 
 *WARNING: EEG classification is set using default thresholding and should be further optimized for sensitivity/specificity/accuracy on additional training data prior to use.*
 
@@ -59,7 +59,7 @@ For testing, the following sample code has been provided in the "Processed EEG" 
 
 
 ## Advanced Code
-  For reproducibility and additional training, code has been provided for both preprocessing of TUEG EEG and model training.
+  For reproducibility and additional training, code has been provided for both preprocessing (Pre* scripts) of TUEG EEG and model training (Train* scripts).
   ### Preprocessing code:
   - PreGetData: Support function. Only needed if PreData2020122213119.xlsx is needed to be rerun.
     - Creates an excel spreadsheet from a local copy to the TUEG database v.1.1.0 and v.1.2.0
