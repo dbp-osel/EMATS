@@ -28,7 +28,7 @@ The script consists of two parts:
 </details>
 
 To use:
-1. Download/clone this repo.
+1.  [Download](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives) or [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) this repo.
 2.  Select the repo as the current MATLAB Folder
 3.  Open **RUN.mlx**
 4.  Follow instructions to preprocess the selected .edf file
