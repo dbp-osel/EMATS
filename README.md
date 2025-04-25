@@ -2,6 +2,17 @@
 Using the [Temple University EEG Corpus](https://isip.piconepress.com/projects/tuh_eeg/index.shtml) (TUEG) [1], we trained a series of classification models that can classify a 3-minute electroencephalogram (EEG) as either "Normal", "Stroke", or "TBI" as described in Vivaldi, Caiola, et al. 2021 [2] and Caiola and Ye 2023 [3].
 > Michael Caiola (Michael.Caiola@fda.hhs.gov) and Meijun Ye (Meijun.Ye@fda.hhs.gov)
 
+# Regulatory Science Tool (RST) Reference
+•	RST Reference Number: RST24NO03.01  
+•	Date of Publication: 02/07/2024  
+•	Recommended Citation: U.S. Food and Drug Administration. (2024). EEG based Machine or Deep Learning Algorithms for TBI & Stroke Classification (EMATS) (RST24NO03.01). https://cdrh-rst.fda.gov/eeg-based-machine-or-deep-learning-algorithms-tbi-stroke-classification-emats  
+
+# Disclaimer
+**About the Catalog of Regulatory Science Tools**  
+The enclosed tool is part of the Catalog of Regulatory Science Tools, which provides a peer- reviewed resource for stakeholders to use where standards and qualified Medical Device Development Tools (MDDTs) do not yet exist. These tools do not replace FDA-recognized standards or MDDTs. This catalog collates a variety of regulatory science tools that the FDA's Center for Devices and Radiological Health's (CDRH) Office of Science and Engineering Labs (OSEL) developed. These tools use the most innovative science to support medical device development and patient access to safe and effective medical devices. If you are considering using a tool from this catalog in your marketing submissions, note that these tools have not been qualified as Medical Device Development Tools and the FDA has not evaluated the suitability of these tools within any specific context of use. You may request feedback or meetings for medical device submissions as part of the Q-Submission Program.  
+For more information about the Catalog of Regulatory Science Tools, email OSEL_CDRH@fda.hhs.gov.  
+
+
 ## Trained Models
 - Short-time Fourier Transform [STFT] (AUC = 0.85)
 - Topographic Map Network [TMN] (AUC = 0.76)
